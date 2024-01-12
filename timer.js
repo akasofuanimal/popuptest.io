@@ -28,24 +28,6 @@
     // カウントダウンの状態を管理できるようにする
     var isRunning = false;
  
-    if (!('Notification' in window)) {
-        alert('未対応のブラウザです');
-    }
-    else {
-    // 許可を求める
-        Notification.requestPermission()
-        .then((permission) => {
-        if (permission == 'granted') {
-        // 許可
-        } else if (permission == 'denied') {
-        // 拒否
-            alert("拒否");
-        } else if (permission == 'default') {
-        // 無視
-            alert("無視");
-        }
-    })};
-    
     // 残り時間を表示するために、ミリ秒を渡すと、分や秒に直してくれる関数
     function updateTimer(t) {
 
@@ -76,17 +58,7 @@
             if (timeLeft < 0) {
                 isRunning = false;
                 window.focus();
-                var n = new Notification(
-                  "timer",
-                  {
-                    body: '時間です',
-                    icon: 'icon.png',
-                    tag: '',
-                    data: {
-                      xxx: 'コンテナNo.など'
-                    }
-                  }
-                );
+               
                 // if (Push.Permission.has()) {
                 //     Push.create("時間です！", {
                 //         body: "これはpush.jsのテスト通知です。",
